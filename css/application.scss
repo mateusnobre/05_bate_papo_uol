@@ -1,0 +1,95 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+
+.header {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 6%;
+    padding-right: 6%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.header .logo_uol {
+    width: 75px;
+    height: 53px;
+    object-fit: fill;
+}
+
+.header .people_icon {
+    width: 43px;
+    height: 31px;
+    object-fit: fill;
+}
+
+.chat {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 106px;
+    background-color: #E5E5E5;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 40px;
+    border-radius: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-color: #FFFFFF;
+    font-size: 14px;
+}
+
+.message.member_flux {
+    background-color: #DCDCDC;
+}
+
+.message.private_message {
+    background-color: #FFDEDE;
+}
+
+.send_text_box {
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 18px;
+    font-style: italic;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.send_text_box.typing {
+    font-style: normal;
+}
+
+.send_text_box .typed_message{
+    margin-right: 14px;
+}
+
+.send_text_box .send_icon {
+    width: 26px;
+    height: 26px;
+    object-fit: fill;
+}
