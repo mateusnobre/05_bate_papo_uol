@@ -1,6 +1,14 @@
-# This file is used by Rack-based servers to start the application.
+use Rack::Static,
+  :urls => ["/images", "/videos", "/js", "/css"],
+  :root => "public"
 
-require_relative "config/environment"
-
-run Rails.application
-Rails.application.load_server
+run lambda { |env|
+  [
+    200,
+    {
+      'Content-Type'  => 'text/html',
+      'Cache-Control' => 'public, max-age=86400'
+    },
+    File.open('public/index.html', File::RDONLY)
+  ]
+}
