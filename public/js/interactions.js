@@ -9,12 +9,22 @@ logUserStatus = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/u
 logUserStatus.catch(processError);
 
 setInterval(updateUserStatus, 5000);
-setInterval(getMessages, 500);
 function updateUserStatus(){
-    console.log(username);
     status = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', {name: username});
 }
-function getMessages(){};
+function getMessages(){
+
+    messagesJSON = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages')
+    for (const messageJSON in messagesJSON){
+        chat.innerHTML += `
+        <div class = 'message'> (${messageJSON.time}) ${messageJSON.from} ${messageJSON.text}</div>
+        `;
+    }
+    const messages = document.getElementsByClassName('message');
+    for (const message in messages){
+        message.scrollIntoView();
+    }
+};
 function sendMessage(username, message, dest = 'Todos', type = 'message'){
     let messageJSON = {
         from: username,
@@ -22,12 +32,19 @@ function sendMessage(username, message, dest = 'Todos', type = 'message'){
         text: message,
         type: type
     }
+    console.log(messageJSON)
     message_status = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages', messageJSON);
+    message_status.then(getMessages)
+    message_status.catch(window.location.reload);
 };
 let currentTime = axios.get('http://worldtimeapi.org/api/timezone/America/Sao_Paulo');
 let chat = document.getElementsByClassName('chat')[0];
 let sendButton = document.getElementsByClassName('send_icon')[0];
-
+let input = document.querySelector('input');
+sendButton.addEventListener('click', function(){
+    const messageText = input.innerText;
+    sendMessage(username, message = messageText);
+})
 time = currentTime.then(processDateResponse); 
 currentTime.catch(processError);
 
